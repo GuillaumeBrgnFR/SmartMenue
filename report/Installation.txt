@@ -1,0 +1,5 @@
+
+
+Avoir un requirements.txt complet
+
+Pour tesseract, installer pytesseract-lang
