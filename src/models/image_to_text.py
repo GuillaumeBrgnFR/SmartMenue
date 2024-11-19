@@ -45,4 +45,4 @@ def extract_image_to_text(filename: str, model_name: str) -> str:
         return pytesseract.image_to_string(image, lang='fra')
     
     else:
-        return "Invalid model name. Please choose from 'pytesseract', 'easyocr', 'keras_ocr', or 'doctr'."
+        return "Invalid model name. Please choose from 'pytesseract', 'easyocr'"
