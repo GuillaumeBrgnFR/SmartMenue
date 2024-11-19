@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu</title>
+</head>
+<body>
+    <h1>Menu</h1>
+<div id="menu">
+    {% for category in categories %}
+    <div class="category">
+        <h2>{{ category.category_name }}</h2>
+        <ul>
+            {% for item, price in zip(category.category_items, category.category_prices) %}
+            <li>
+                <span class="item-name">{{ item }}</span>
+                <span class="item-price">{{ price }}</span>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endfor %}
+</div>
+    <script>
+        function toggleVisibility(element) {
+            const nextSibling = element.nextElementSibling;
+            if (nextSibling.style.display === "block") {
+                nextSibling.style.display = "none";
+            } else {
+                nextSibling.style.display = "block";
+            }
+        }
+    </script>
+</body>
+</html>

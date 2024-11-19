@@ -1,0 +1,184 @@
+/* Corps de la page */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Playfair Display', serif;
+    background-color: #f5f5f5; /* Blanc pur */
+    color: #333333; /* Noir profond */
+    margin: 0;
+    padding: 0;
+    line-height: 1.8; /* Meilleure lisibilité */
+}
+
+/* Conteneur principal */
+.App-header {
+    position: relative; /* Conteneur pour positionner les enfants */
+    height: 100px; /* Ajustez selon vos besoins */
+    background-color: #f5f5f5;
+    border-bottom: 2px solid #d4af37;
+}
+
+/* Bouton personnalisé */
+.custom-button {
+    position: absolute; /* Position absolue pour placer le bouton */
+    top: 50%; /* Centré verticalement par rapport à l'en-tête */
+    right: 20px; /* Distance du bord droit */
+    transform: translateY(-50%); /* Ajuste pour que le centre du bouton soit aligné */
+    background-color: #d4af37;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.custom-button:hover {
+    background-color: #c9a76a;
+    transform: scale(1.05);
+}
+
+.custom-button:active {
+    background-color: #b8955c;
+    transform: scale(0.95);
+}
+
+/* Titre centré */
+.page-title {
+    position: absolute; /* Permet de le centrer indépendamment du bouton */
+    top: 50%; /* Centré verticalement par rapport à l'en-tête */
+    left: 50%; /* Centré horizontalement par rapport à la page */
+    transform: translate(-50%, -50%); /* Centre complètement le titre */
+    font-size: 24px;
+    font-weight: bold;
+    color: #333333;
+    text-align: center;
+}
+/* Conteneur principal */
+.menu-container {
+    width: 90%;
+    max-width: 800px; /* Limiter la largeur pour un style plus centré */
+    margin: 40px auto; /* Centrer et espacer */
+    border: 2px solid #d4af37; /* Bordure dorée */
+    padding: 20px;
+    background-color: #ffffff; /* Fond blanc élégant */
+    border-radius: 8px; /* Coins légèrement arrondis */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ombre légère */
+}
+
+/* Titre principal */
+h1 {
+    text-align: center;
+    font-size: 32px;
+    color: #d4af37; /* Doré pour le titre principal */
+    margin-bottom: 20px;
+    text-transform: uppercase; /* Majuscules élégantes */
+    letter-spacing: 2px; /* Espacement pour plus de classe */
+}
+
+/* Section des catégories */
+.category {
+    margin-bottom: 0;
+    border-bottom: 1px solid #d4af37;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* En-tête de la catégorie */
+.category-header {
+    display: flex;
+    border-radius: 10px;
+    border: none;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #2c2c2c; /* Fond noir élégant */
+    color: #f8f8f8; /* Texte blanc */
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.category-header:hover {
+    background-color: #d4af37; /* Fond doré au survol */
+    color: #2c2c2c; /* Texte noir au survol */
+}
+
+/* Liste des items */
+.category ul {
+    margin: 0;
+    opacity: 0;
+    padding: 0 20px;
+    display: block;
+    flex-direction: column; /* Aligne les items verticalement */
+    align-items: flex-start; /* Aligne les items sur la gauche */
+    justify-content: flex-start; /* Garde un alignement propre */
+    list-style: none;
+    transform: translateY(-10px);
+    transition: max-height 0.5s ease, opacity 0.5s ease;
+    max-height: 0;
+    overflow: hidden;
+}
+
+.category ul.visible {
+    opacity: 1;
+    /*transform: translateY(0);*/
+    max-height: 500px; /* Ajustez selon le contenu */
+}
+
+/* Items */
+.category ul li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    list-style: none;
+    padding: 10px 0;
+    margin: 0;
+    border-bottom: 1px solid #d4af37; /* Ligne de séparation dorée */
+    text-align: left;
+    overflow: visible;
+}
+
+.category ul li:first-child {
+    padding-top: 20px; /* Ajoute de l'espace au-dessus */
+}
+
+.category ul li:last-child {
+    border-bottom: none; /* Pas de ligne pour le dernier élément */
+}
+
+.item-price {
+    font-size: 16px;
+    font-style: italic; /* Italique pour les prix */
+    color: #2c2c2c; /* Noir légèrement différent pour les prix */
+}
+
+/* Flèche */
+.arrow {
+    font-size: 16px;
+    transition: transform 0.3s ease;
+}
+
+.arrow.right {
+    transform: rotate(0deg); /* Flèche vers la droite */
+}
+
+.arrow.down {
+    transform: rotate(90deg); /* Flèche vers le bas */
+}
+
+/* Pied de page */
+footer {
+    text-align: center;
+    font-size: 14px;
+    color: #000000;
+    margin-top: 40px;
+    border-top: 1px solid #d4af37;
+    padding: 10px;
+}
