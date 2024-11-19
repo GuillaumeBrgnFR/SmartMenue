@@ -14,20 +14,60 @@ body {
     line-height: 1.8; /* Meilleure lisibilité */
 }
 
-/* Conteneur principal */
 .App-header {
-    position: relative; /* Conteneur pour positionner les enfants */
-    height: 100px; /* Ajustez selon vos besoins */
-    background-color: #f5f5f5;
-    border-bottom: 2px solid #d4af37;
+    display: flex; /* Active Flexbox */
+    align-items: center; /* Aligne verticalement les enfants au centre */
+    justify-content: space-between; /* Place les enfants aux extrémités : gauche et droite */
+    height: 100px; /* Hauteur du header */
+    background-color: #f5f5f5; /* Fond blanc */
+    border-bottom: 2px solid #d4af37; /* Ligne dorée */
+    padding: 0 20px; /* Espacement horizontal à gauche et à droite */
+    position: relative;
+}
+
+@media (max-width: 600px) {
+    .App-header {
+        flex-direction: column;
+        height: auto;
+    }
+    .page-title {
+        position: static;
+        transform: none;
+        margin-top: 10px;
+    }
+    .custom-button {
+        margin-top: 10px;
+    }
+}
+
+.App-header .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100px;
+    /* padding: 0 20px; */ /* Supprimé, car le padding est déjà dans .container */
+}
+.container {
+    max-width: 1200px; /* Vous pouvez ajuster la largeur maximale selon vos besoins */
+    margin: 0 auto; /* Centre le conteneur horizontalement */
+    padding: 0 20px; /* Ajoute un espace horizontal */
+}
+
+/* Logo du restaurant */
+.restaurant-logo {
+    /* position: absolute; */ /* Supprimé */
+    /* top: 10px; */ /* Supprimé */
+    /* left: 10px; */ /* Supprimé */
+    width: 50px; /* Taille fixe pour un aspect uniforme */
+    height: 50px; /* Taille fixe pour correspondre au width */
+    object-fit: contain; /* Ajuste l'image pour éviter les déformations */
+    border-radius: 8px; /* Coins légèrement arrondis pour un style moderne */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Ombre pour un effet de relief */
+    margin-right: 20px; /* Espace entre le logo et le titre */
 }
 
 /* Bouton personnalisé */
 .custom-button {
-    position: absolute; /* Position absolue pour placer le bouton */
-    top: 50%; /* Centré verticalement par rapport à l'en-tête */
-    right: 20px; /* Distance du bord droit */
-    transform: translateY(-50%); /* Ajuste pour que le centre du bouton soit aligné */
     background-color: #d4af37;
     color: #ffffff;
     border: none;
@@ -37,6 +77,7 @@ body {
     font-weight: bold;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-left: auto;
 }
 
 .custom-button:hover {
@@ -51,15 +92,19 @@ body {
 
 /* Titre centré */
 .page-title {
-    position: absolute; /* Permet de le centrer indépendamment du bouton */
-    top: 50%; /* Centré verticalement par rapport à l'en-tête */
-    left: 50%; /* Centré horizontalement par rapport à la page */
-    transform: translate(-50%, -50%); /* Centre complètement le titre */
+    /*flex: 1;*/ /* Laisse le titre occuper l'espace disponible */
+    position: absolute;
+    /* top: 50%; */ /* Supprimé */
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    margin: 0;
     font-size: 24px;
     font-weight: bold;
     color: #333333;
-    text-align: center;
+    text-align: center; /* Centre le texte à l'intérieur de l'élément */
 }
+
 /* Conteneur principal */
 .menu-container {
     width: 90%;
@@ -76,7 +121,7 @@ body {
 h1 {
     text-align: center;
     font-size: 32px;
-    color: #d4af37; /* Doré pour le titre principal */
+    color: #282828; /* Doré pour le titre principal */
     margin-bottom: 20px;
     text-transform: uppercase; /* Majuscules élégantes */
     letter-spacing: 2px; /* Espacement pour plus de classe */
@@ -182,3 +227,4 @@ footer {
     border-top: 1px solid #d4af37;
     padding: 10px;
 }
+

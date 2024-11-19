@@ -3,30 +3,9 @@ import "./App.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown, faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { faUpload } from "@fortawesome/free-solid-svg-icons";
+import Modal from "./Modal";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <h1 className="page-title">Menu</h1>
-        <button className="custom-button">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="currentColor"
-            width="16px"
-            height="16px"
-            style={{ marginRight: "10px" }}
-          >
-            <path d="M4 4v2h16V4H4zm6 7.59V20h4v-8.41l2.29 2.29 1.42-1.42L12 8l-5.71 5.71 1.42 1.42L10 11.59z" />
-          </svg>
-          Importer un menu
-        </button>
-      </header>
-      <Menu />
-    </div>
-  );
-}
+
 
 function Menu() {
   const [categories, setCategories] = useState([]); // État pour stocker les catégories
@@ -87,6 +66,56 @@ function MenuSection({ title, items = [], prices = [], isVisible, onClick }) {
           </li>
         ))}
       </ul>
+    </div>
+  );
+}
+
+function App() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [menuTitle, setMenuTitle] = useState("Menu");
+  const [logo, setLogo] = useState(null); // État pour stocker le logo
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
+
+  const handleSubmit = (formData) => {
+    const menuName = formData.get("menuName");
+    const uploadedLogo = formData.get("logo");
+
+    if (menuName) setMenuTitle(menuName); // Met à jour le titre si fourni
+
+    if (uploadedLogo) {
+      const reader = new FileReader();
+      reader.onload = (e) => setLogo(e.target.result); // Lire l'image comme URL de données
+      reader.readAsDataURL(uploadedLogo);
+    }
+
+    closeModal();
+  };
+
+  return (
+    <div className="App">
+      <header className="App-header">
+        {logo && <img src={logo} alt="Logo" className="restaurant-logo" />}
+        <h1 className="page-title">{menuTitle}</h1>
+        <button className="custom-button" onClick={openModal}>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            width="16px"
+            height="16px"
+            style={{ marginRight: "10px" }}
+          >
+            <path d="M4 4v2h16V4H4zm6 7.59V20h4v-8.41l2.29 2.29 1.42-1.42L12 8l-5.71 5.71 1.42 1.42L10 11.59z" />
+          </svg>
+          Importer un menu
+        </button>
+      </header>
+      <div className="container">
+        <Menu />
+      </div>
+      <Modal isOpen={isModalOpen} onClose={closeModal} onSubmit={handleSubmit} />
     </div>
   );
 }

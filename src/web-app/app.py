@@ -1,5 +1,7 @@
-from flask import Flask, jsonify, send_from_directory
+from flask import Flask, jsonify, send_from_directory, request
 from flask_cors import CORS
+from PIL import Image
+from flask import request
 
 # Initialisation de Flask
 app = Flask(__name__, static_folder="frontend/build", static_url_path="")
@@ -55,6 +57,17 @@ def serve_react(path):
     if path and path.startswith("static/"):
         return send_from_directory(app.static_folder, path)
     return send_from_directory(app.static_folder, "index.html")
+
+
+
+
+@app.route('/api/upload-logo', methods=['POST'])
+def upload_logo():
+    file = request.files['logo']
+    image = Image.open(file)
+    image = image.resize((50, 50))  # Redimensionner à 50x50 pixels
+    image.save(f"uploads/{file.filename}")
+    return jsonify({"message": "Logo uploadé avec succès"})
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
