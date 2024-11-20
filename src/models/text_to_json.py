@@ -1,7 +1,7 @@
 import cohere
 
-#co = cohere.ClientV2("jDRziy0rPDlXjCY9gvzEcV4BxfVCSQ4BavvnJ011")
-co = cohere.ClientV2("7HJV6CGrabnCQWomhg45iZHzDuOHiI91RfkrhDNr")
+co = cohere.ClientV2("jDRziy0rPDlXjCY9gvzEcV4BxfVCSQ4BavvnJ011")
+#co = cohere.ClientV2("7HJV6CGrabnCQWomhg45iZHzDuOHiI91RfkrhDNr")
 
 
 def generate_json(text: str, section_list:str="Entrées, Plats, Desserts, Boissons, Vins"):

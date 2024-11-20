@@ -1,4 +1,6 @@
 from src.models import image_to_text, text_to_json
+import os
+
 
 
 def image_to_json_pipeline(image_path: str, model_name: str = "pytesseract") -> list:
