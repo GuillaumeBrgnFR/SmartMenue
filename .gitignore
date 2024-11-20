@@ -167,3 +167,4 @@ cython_debug/
 src/web-app/frontend/.gitignore
 src/web-app/frontend/README.md
 
+node_modules/

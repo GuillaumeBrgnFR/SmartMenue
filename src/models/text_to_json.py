@@ -24,6 +24,12 @@ def generate_json(text: str, section_list:str="Entrées, Plats, Desserts, Boisso
 
 def normalize_json(json_data):
     for section in json_data:
-        # convert prices to str 
-        section["category_prices"] = [str(price) for price in section["category_prices"]]
+        formatted_prices = []
+        for price in section["category_prices"]:
+            try:
+                formatted_price = f"{float(price):05.2f}".replace('.', ',') + " €"
+                formatted_prices.append(formatted_price)
+            except (ValueError, TypeError):
+                formatted_prices.append("Invalid price")
+        section["category_prices"] = formatted_prices
     return json_data
