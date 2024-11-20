@@ -2,6 +2,8 @@ from flask import Flask, jsonify, send_from_directory, request
 from flask_cors import CORS
 from PIL import Image
 from flask import request
+import json
+import os
 
 # Initialisation de Flask
 app = Flask(__name__, static_folder="frontend/build", static_url_path="")
@@ -36,6 +38,7 @@ def extract_categories():
             'category_prices': ["50,00€", "65,99€"]
         }
     ]
+
 
 
 @app.template_filter('zip')
