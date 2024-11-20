@@ -20,3 +20,10 @@ def generate_json(text: str, section_list:str="Entrées, Plats, Desserts, Boisso
     )
 
     return eval(response.dict()["message"]['content'][0]['text'])
+
+
+def normalize_json(json_data):
+    for section in json_data:
+        # convert prices to str 
+        section["category_prices"] = [str(price) for price in section["category_prices"]]
+    return json_data

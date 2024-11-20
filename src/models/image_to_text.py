@@ -4,7 +4,7 @@ import easyocr
 #from doctr.models import ocr_predictor
 from PIL import Image
 
-def extract_image_to_text(filename: str, model_name: str) -> str:
+def extract_image_to_text(filename: str, model_name: str = "pytesseract") -> str:
     """
     args: 
         filename: path to the image
