@@ -4,6 +4,10 @@ from PIL import Image
 from flask import request
 import json
 import os
+
+from werkzeug.utils import secure_filename
+
+print(os.getcwd())
 from src.pipelines.image_to_json_pipeline import image_to_json_pipeline
 
 
@@ -26,7 +30,7 @@ app.jinja_env.filters['zip'] = zip_filter
 # API pour récupérer les données sous forme JSON
 @app.route('/api/menu', methods=['GET'])
 def get_menu():
-    categories = "../web-app/data/json/data.json" if os.path.exists("../web-app/data/json/data.json") else "../web-app/data/json/default.json"
+    categories = "src/web-app/data/json/data.json" if os.path.exists("src/web-app/data/json/data.json") else "src/web-app/data/json/default.json"
     with open(categories) as f:
         categories = json.load(f)
     return jsonify({'categories': categories})
@@ -42,28 +46,37 @@ def serve_react(path):
 
 @app.route('/api/upload-menu', methods=['POST'])
 def upload_menu():
-    print("SIUUUUUUU menu")
     file = request.files['menu']
     image = Image.open(file)
-    save_dir = "../web-app/data/images/"
+    save_dir = "src/web-app/data/images/"
     os.makedirs(save_dir, exist_ok=True)
     save_path = os.path.join(save_dir, file.filename)
     image.save(save_path)
     json_data = image_to_json_pipeline(save_path)
-    json.dump(json_data, open('../web-app/data/json/data.json', 'w'))
+    json.dump(json_data, open('src/web-app/data/json/data.json', 'w'))
     return jsonify({"message": "Image uploadée avec succès", "path": save_path})
 
 @app.route('/api/upload-logo', methods=['POST'])
 def upload_logo():
-    print("SIUUUUUUU logo")
     file = request.files['logo']
+    filename = secure_filename(file.filename)
+    extension = os.path.splitext(filename)[1]  # Récupère l'extension avec le point (par exemple, '.png')
+
+    if not extension:
+        return jsonify({"message": "Extension de fichier invalide"}), 400
+
     image = Image.open(file)
-    save_dir = "../web-app/data/images/logos/"
+    save_dir = "src/web-app/frontend/public/"
     os.makedirs(save_dir, exist_ok=True)
     image = image.resize((50, 50))  # Redimensionner à 50x50 pixels
-    save_path = os.path.join(save_dir, file.filename)
+    save_path = os.path.join(save_dir, f"logo{extension}")
     image.save(save_path)
     return jsonify({"message": "Logo uploadé avec succès"})
+
+@app.route('/data/images/logos/<filename>')
+def get_logo_image(filename):
+    print("Trying to get logo image: {}".format(filename))
+    return send_from_directory('src/web-app/data/images/logos/', filename)
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
