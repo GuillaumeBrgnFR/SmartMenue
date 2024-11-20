@@ -4,8 +4,7 @@ from PIL import Image
 from flask import request
 import json
 import os
-
-print(os.getcwd())
+from src.pipelines.image_to_json_pipeline import image_to_json_pipeline
 
 
 
