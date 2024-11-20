@@ -5,6 +5,10 @@ from flask import request
 import json
 import os
 
+print(os.getcwd())
+
+
+
 # Initialisation de Flask
 app = Flask(__name__, static_folder="frontend/build", static_url_path="")
 CORS(app)
@@ -46,7 +50,8 @@ def upload_menu():
     os.makedirs(save_dir, exist_ok=True)
     save_path = os.path.join(save_dir, file.filename)
     image.save(save_path)
-
+    json_data = image_to_json_pipeline(save_path)
+    json.dump(json_data, open('../web-app/data/json/data.json', 'w'))
     return jsonify({"message": "Image uploadée avec succès", "path": save_path})
 
 @app.route('/api/upload-logo', methods=['POST'])
