@@ -75,6 +75,24 @@ function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [menuTitle, setMenuTitle] = useState("Menu");
 
+  useEffect(() => {
+    fetch("/api/get-menu-name")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Erreur lors de la récupération du nom du menu");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        if (data.menuName) {
+          setMenuTitle(data.menuName);
+        }
+      })
+      .catch((error) => {
+        console.error("Erreur :", error);
+      });
+  }, []);
+
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => {
     setIsModalOpen(false);
@@ -91,7 +109,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img
-          src="/logo.png"
+          src="/images/logos/logo.png"
           alt="Logo"
           className="restaurant-logo"
         />

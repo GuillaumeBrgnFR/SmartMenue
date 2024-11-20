@@ -10,6 +10,7 @@ function Modal({ isOpen, onClose, onSubmit }) {
 
   const logo = formData.get("logo");
   const menu = formData.get("menu");
+  const menuName = formData.get("menuName");
 
   // Créer une promesse pour chaque fichier uploadé
   const promises = [];
@@ -48,15 +49,29 @@ function Modal({ isOpen, onClose, onSubmit }) {
     );
   }
 
+  if (menuName && menuName.trim() !== "") {
+    promises.push(
+      fetch("/api/save-menu-name", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ menuName: menuName }),
+      }).then((response) => {
+        if (!response.ok) {
+          throw new Error("Erreur lors de la sauvegarde du nom du menu");
+        }
+        return response.json();
+      })
+    );
+  }
+
   try {
     // Attendez que toutes les promesses soient résolues
     const results = await Promise.all(promises);
     console.log("Résultats des uploads :", results);
     onSubmit(formData); // Passer les données au parent si nécessaire
     alert("Upload réussi !");
-
-    // *** Ajouter le rechargement de la page ici ***
-    window.location.reload();
   } catch (error) {
     console.error("Erreur lors de l'upload :", error);
     alert("Erreur lors de l'upload, veuillez réessayer.");
@@ -79,7 +94,7 @@ function Modal({ isOpen, onClose, onSubmit }) {
           </div>
           <div className="form-group">
             <label htmlFor="logo">Logo :</label>
-            <input type="file" id="logo" name="logo" accept=".jpeg, .png, .jpg" />
+            <input type="file" id="logo" name="logo" accept=".png" />
           </div>
           <div className="form-group">
             <label htmlFor="menu">Menu :</label>

@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, send_from_directory, request
+from flask import Flask, jsonify, send_from_directory, request, abort, send_file
 from flask_cors import CORS
 from PIL import Image
 from flask import request
@@ -44,6 +44,25 @@ def serve_react(path):
     return send_from_directory(app.static_folder, "index.html")
 
 
+@app.route('/images/logos/<filename>')
+def serve_logo(filename):
+    print(f"app.root_path: {app.root_path}")
+
+    # Chemin absolu vers le répertoire contenant les logos
+    logo_directory = os.path.join(app.root_path, 'data', 'images', 'logos')
+    print(f"logo_directory: {logo_directory}")
+
+    # Chemin complet vers le fichier logo
+    full_path = os.path.join(logo_directory, filename)
+    print(f"full_path: {full_path}")
+
+    if os.path.exists(os.path.join(logo_directory, filename)):
+        print(f"hey dude: {os.path.join(logo_directory, filename)}")
+        return send_file(os.path.join(logo_directory, filename))
+    else:
+        print('so sad')
+        abort(404)  # Fichier non trouvé
+
 @app.route('/api/upload-menu', methods=['POST'])
 def upload_menu():
     file = request.files['menu']
@@ -66,12 +85,44 @@ def upload_logo():
         return jsonify({"message": "Extension de fichier invalide"}), 400
 
     image = Image.open(file)
-    save_dir = "src/web-app/frontend/public/"
+    save_dir = "src/web-app/data/images/logos/"
     os.makedirs(save_dir, exist_ok=True)
     image = image.resize((50, 50))  # Redimensionner à 50x50 pixels
     save_path = os.path.join(save_dir, f"logo{extension}")
     image.save(save_path)
     return jsonify({"message": "Logo uploadé avec succès"})
+
+
+@app.route('/api/save-menu-name', methods=['POST'])
+def save_menu_name():
+    data = request.get_json()
+    menu_name = data.get('menuName')
+
+    if menu_name:
+        # Chemin vers le répertoire de sauvegarde
+        save_dir = os.path.join(app.root_path, 'data', 'menu_name')
+        os.makedirs(save_dir, exist_ok=True)
+        save_path = os.path.join(save_dir, 'menu_name.txt')
+
+        # Sauvegarde du nom du menu dans le fichier
+        with open(save_path, 'w', encoding='utf-8') as f:
+            f.write(menu_name)
+
+        return jsonify({'message': 'Nom du menu sauvegardé avec succès'}), 200
+    else:
+        return jsonify({'message': 'Nom du menu manquant'}), 400
+
+@app.route('/api/get-menu-name', methods=['GET'])
+def get_menu_name():
+    save_dir = os.path.join(app.root_path, 'data', 'menu_name')
+    save_path = os.path.join(save_dir, 'menu_name.txt')
+
+    if os.path.exists(save_path):
+        with open(save_path, 'r', encoding='utf-8') as f:
+            menu_name = f.read()
+        return jsonify({'menuName': menu_name}), 200
+    else:
+        return jsonify({'menuName': None}), 200
 
 @app.route('/data/images/logos/<filename>')
 def get_logo_image(filename):
