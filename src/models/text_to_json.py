@@ -5,12 +5,21 @@ co = cohere.ClientV2("jDRziy0rPDlXjCY9gvzEcV4BxfVCSQ4BavvnJ011")
 
 
 def generate_json(text: str, section_list:str="Entrées, Plats, Desserts, Boissons, Vins"):
+    # prompt = (
+    #     f"Voici un menu de restaurant :\n\n{text}\n\n"
+    #     f"Transforme ce texte en une liste de dictionnaires. Chaque section du menu)"
+    #     "doit être le nom category_name. Cela peut être Entrées, Plats, Desserts, Boissons, Vins ou un nom personnalisé donné dans le menu."
+    #     "Dans chaque dictionnaire, tu dois avoir category_name, category_items et category_prices."
+    #     """La forme doit être la suivante : [{"nom_de_section":nom, "category_items":liste, "category_prices":liste}, ...]."""
+    #     "Ne réponds rien d'autre que la la liste de dictionnaires."
+    # )
+
     prompt = (
         f"Voici un menu de restaurant :\n\n{text}\n\n"
         f"Transforme ce texte en une liste de dictionnaires. Chaque section du menu)"
         "doit être le nom category_name. Cela peut être Entrées, Plats, Desserts, Boissons, Vins ou un nom personnalisé donné dans le menu."
-        "Dans chaque dictionnaire, tu dois avoir category_name, category_items et category_prices."
-        """La forme doit être la suivante : [{"nom_de_section":nom, "category_items":liste, "category_prices":liste}, ...]."""
+        "Dans chaque dictionnaire, tu dois avoir category_name, category_items, item_description et item_prices."
+        """La forme doit être la suivante : [{"category_name":nom, "category_items":liste, "item_description":list, "item_prices":liste}, ...]."""
         "Ne réponds rien d'autre que la la liste de dictionnaires."
     )
 
@@ -25,11 +34,11 @@ def generate_json(text: str, section_list:str="Entrées, Plats, Desserts, Boisso
 def normalize_json(json_data):
     for section in json_data:
         formatted_prices = []
-        for price in section["category_prices"]:
+        for price in section["item_prices"]:
             try:
                 formatted_price = f"{float(price):05.2f}".replace('.', ',') + " €"
                 formatted_prices.append(formatted_price)
             except (ValueError, TypeError):
                 formatted_prices.append("Invalid price")
-        section["category_prices"] = formatted_prices
+        section["item_prices"] = formatted_prices
     return json_data

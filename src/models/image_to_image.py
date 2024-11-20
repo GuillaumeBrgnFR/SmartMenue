@@ -34,4 +34,4 @@ def extract_image_to_image(filename:str, threshold:float=0.1):
         cropped_image = image.crop((box[0], box[1], box[2], box[3])) # Crop the detected object
 
         # Save the cropped image
-        cropped_image.save(os.path.join(f"extracted_image_{i}.jpg"))
+        cropped_image.save(os.path.join(f"src/web-app/data/images/extracted/extracted_image_{i}.jpg"))

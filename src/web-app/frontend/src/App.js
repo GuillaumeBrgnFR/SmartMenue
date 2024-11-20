@@ -41,7 +41,7 @@ function Menu() {
           key={index}
           title={category.category_name}
           items={category.category_items}
-          prices={category.category_prices}
+          prices={category.item_prices}
           isVisible={index === activeIndex}
           onClick={() => toggleVisibility(index)}
         />
