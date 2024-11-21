@@ -18,8 +18,8 @@ def generate_json(text: str, section_list:str="Entrées, Plats, Desserts, Boisso
         f"Voici un menu de restaurant :\n\n{text}\n\n"
         f"Transforme ce texte en une liste de dictionnaires. Chaque section du menu)"
         "doit être le nom category_name. Cela peut être Entrées, Plats, Desserts, Boissons, Vins ou un nom personnalisé donné dans le menu."
-        "Dans chaque dictionnaire, tu dois avoir category_name, category_items, item_description et item_prices."
-        """La forme doit être la suivante : [{"category_name":nom, "category_items":liste, "item_description":list, "item_prices":liste}, ...]."""
+        "Dans chaque dictionnaire, tu dois avoir category_name (nom de la catégorie), category_items (nom du plat et sa description), et item_prices (prix du plat)."
+        """La forme doit être la suivante : [{"category_name":nom, "category_items":liste, "item_prices":liste}, ...]."""
         "Ne réponds rien d'autre que la la liste de dictionnaires."
     )
 

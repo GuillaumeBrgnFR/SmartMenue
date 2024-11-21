@@ -1,5 +1,5 @@
 import pytesseract
-import easyocr
+#import easyocr
 #import keras_ocr
 #from doctr.models import ocr_predictor
 from PIL import Image
@@ -18,11 +18,11 @@ def extract_image_to_text(filename: str, model_name: str = "pytesseract") -> str
     except Exception as e:
         return f"Error loading image: {str(e)}"
 
-    if model_name == "easyocr":
-        reader = easyocr.Reader(['fr'])
-        # Read text from an image
-        result = reader.readtext(filename, detail=0)  # detail=0 returns only the text
-        return "\n".join(result)
+    # if model_name == "easyocr":
+    #     reader = easyocr.Reader(['fr'])
+    #     # Read text from an image
+    #     result = reader.readtext(filename, detail=0)  # detail=0 returns only the text
+    #     return "\n".join(result)
     
     # elif model_name == "doctr":
     #     # Perform OCR on the document
@@ -40,7 +40,7 @@ def extract_image_to_text(filename: str, model_name: str = "pytesseract") -> str
     #     # Extract and combine text
     #     return "\n".join(word for word, box in predictions[0])
     
-    elif model_name == "pytesseract":
+    if model_name == "pytesseract":
         # Perform OCR on an image
         return pytesseract.image_to_string(image, lang='fra')
     
