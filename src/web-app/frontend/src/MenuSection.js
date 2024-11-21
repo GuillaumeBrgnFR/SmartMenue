@@ -17,23 +17,46 @@ function MenuSection({ index, category, isVisible, onToggle, isEditMode, updateC
 
   // Fonction pour mettre à jour un item
   const handleItemChange = (itemIndex, field, value) => {
-    const updatedItems = [...category.category_items];
-    const updatedPrices = [...category.item_prices];
+  const updatedItems = [...category.category_items];
+  const updatedPrices = [...category.item_prices];
 
-    if (field === 'name') {
+  // Vérification si les champs sont vides
+  const currentName = updatedItems[itemIndex] || "";
+  const currentPrice = updatedPrices[itemIndex] || "";
+
+  if (field === 'name') {
+    if (value === "" && currentPrice === "") {
+      // Les deux champs sont vides, ne rien faire
+      return;
+    } else if (value === "" && currentPrice !== "") {
+      // Nom vide mais prix rempli, ajouter une chaîne vide dans la liste
+      updatedItems[itemIndex] = "";
+    } else {
+      // Mettre à jour le nom
       updatedItems[itemIndex] = value;
-    } else if (field === 'price') {
+    }
+  } else if (field === 'price') {
+    if (value === "" && currentName === "") {
+      // Les deux champs sont vides, ne rien faire
+      return;
+    } else if (value === "" && currentName !== "") {
+      // Prix vide mais nom rempli, ajouter une chaîne vide dans la liste
+      updatedPrices[itemIndex] = "";
+    } else {
+      // Mettre à jour le prix
       updatedPrices[itemIndex] = value;
     }
+  }
 
-    const updatedCategory = {
-      ...category,
-      category_items: updatedItems,
-      item_prices: updatedPrices,
-    };
-
-    updateCategory(index, updatedCategory);
+  // Mettre à jour la catégorie
+  const updatedCategory = {
+    ...category,
+    category_items: updatedItems,
+    item_prices: updatedPrices,
   };
+
+  updateCategory(index, updatedCategory);
+};
 
   const deleteItem = (itemIndex) => {
     const updatedItems = category.category_items.filter((_, i) => i !== itemIndex);

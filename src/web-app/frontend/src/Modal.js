@@ -1,84 +1,87 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Modal.css";
 
 function Modal({ isOpen, onClose, onSubmit }) {
+  const [isLoading, setIsLoading] = useState(false); // État pour le chargement
+
   if (!isOpen) return null;
 
   const handleSubmit = async (e) => {
-  e.preventDefault();
-  const formData = new FormData(e.target);
+    e.preventDefault();
+    setIsLoading(true); // Commence le chargement
 
-  const logo = formData.get("logo");
-  const menu = formData.get("menu");
-  const menuName = formData.get("menuName");
+    const formData = new FormData(e.target);
 
-  // Créer une promesse pour chaque fichier uploadé
-  const promises = [];
+    const logo = formData.get("logo");
+    const menu = formData.get("menu");
+    const menuName = formData.get("menuName");
 
-  if (logo && logo.size > 0) {
-    const logoFormData = new FormData();
-    logoFormData.append("logo", logo);
+    const promises = [];
 
-    promises.push(
-      fetch("/api/upload-logo", {
-        method: "POST",
-        body: logoFormData,
-      }).then((response) => {
-        if (!response.ok) {
-          throw new Error("Erreur lors de l'upload du logo");
-        }
-        return response.json();
-      })
-    );
-  }
+    if (logo && logo.size > 0) {
+      const logoFormData = new FormData();
+      logoFormData.append("logo", logo);
 
-  if (menu && menu.size > 0) {
-    const menuFormData = new FormData();
-    menuFormData.append("menu", menu);
+      promises.push(
+        fetch("/api/upload-logo", {
+          method: "POST",
+          body: logoFormData,
+        }).then((response) => {
+          if (!response.ok) {
+            throw new Error("Erreur lors de l'upload du logo");
+          }
+          return response.json();
+        })
+      );
+    }
 
-    promises.push(
-      fetch("/api/upload-menu", {
-        method: "POST",
-        body: menuFormData,
-      }).then((response) => {
-        if (!response.ok) {
-          throw new Error("Erreur lors de l'upload du menu");
-        }
-        return response.json();
-      })
-    );
-  }
+    if (menu && menu.size > 0) {
+      const menuFormData = new FormData();
+      menuFormData.append("menu", menu);
 
-  if (menuName && menuName.trim() !== "") {
-    promises.push(
-      fetch("/api/save-menu-name", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ menuName: menuName }),
-      }).then((response) => {
-        if (!response.ok) {
-          throw new Error("Erreur lors de la sauvegarde du nom du menu");
-        }
-        return response.json();
-      })
-    );
-  }
+      promises.push(
+        fetch("/api/upload-menu", {
+          method: "POST",
+          body: menuFormData,
+        }).then((response) => {
+          if (!response.ok) {
+            throw new Error("Erreur lors de l'upload du menu");
+          }
+          return response.json();
+        })
+      );
+    }
 
-  try {
-    // Attendez que toutes les promesses soient résolues
-    const results = await Promise.all(promises);
-    console.log("Résultats des uploads :", results);
-    onSubmit(formData); // Passer les données au parent si nécessaire
-    alert("Upload réussi !");
-  } catch (error) {
-    console.error("Erreur lors de l'upload :", error);
-    alert("Erreur lors de l'upload, veuillez réessayer.");
-  } finally {
-    onClose(); // Fermer le modal
-  }
-};
+    if (menuName && menuName.trim() !== "") {
+      promises.push(
+        fetch("/api/save-menu-name", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ menuName: menuName }),
+        }).then((response) => {
+          if (!response.ok) {
+            throw new Error("Erreur lors de la sauvegarde du nom du menu");
+          }
+          return response.json();
+        })
+      );
+    }
+
+    try {
+      const results = await Promise.all(promises);
+      console.log("Résultats des uploads :", results);
+      onSubmit(formData);
+      alert("Upload réussi !");
+    } catch (error) {
+      console.error("Erreur lors de l'upload :", error);
+      alert("Erreur lors de l'upload, veuillez réessayer.");
+    } finally {
+      setIsLoading(false); // Arrête le chargement
+      onClose(); // Ferme le modal
+    }
+  };
 
   return (
     <div className="modal-overlay">
@@ -100,8 +103,15 @@ function Modal({ isOpen, onClose, onSubmit }) {
             <label htmlFor="menu">Menu :</label>
             <input type="file" id="menu" name="menu" accept=".jpeg, .png, .jpg" />
           </div>
-          <button type="submit" className="submit-button">Soumettre</button>
+          <button type="submit" className="submit-button" disabled={isLoading}>
+            {isLoading ? "Chargement..." : "Soumettre"}
+          </button>
         </form>
+        {isLoading && (
+          <div className="loading-container">
+            <div className="spinner"></div>
+          </div>
+        )}
       </div>
     </div>
   );

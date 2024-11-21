@@ -32,9 +32,7 @@ app.jinja_env.filters['zip'] = zip_filter
 def get_menu():
     data_file_path = os.path.join(app.root_path, 'data', 'json', 'data.json')
     default_file_path = os.path.join(app.root_path, 'data', 'json', 'default.json')
-
     categories_file = data_file_path if os.path.exists(data_file_path) else default_file_path
-
     with open(categories_file, 'r', encoding='utf-8') as f:
         categories = json.load(f)
 
@@ -142,7 +140,15 @@ def save_menu():
 
     # S'assurer que le dossier existe
     os.makedirs(os.path.dirname(data_file_path), exist_ok=True)
-
+    for dictionnary in categories:
+        for i in range(len(dictionnary["item_prices"])):
+            price = dictionnary["item_prices"][i]
+            if price is not None and price !="" and price[-1] != "€":
+                print(price)
+                price = f"{float(price):05.2f}"
+                print(f"price after: {price}")
+                price = price + " €"
+                dictionnary["item_prices"][i] = price
     try:
         with open(data_file_path, 'w', encoding='utf-8') as f:
             json.dump(categories, f, ensure_ascii=False, indent=4)

@@ -373,3 +373,35 @@ footer {
 .add-item-button:hover {
   color: #218838;
 }
+
+.loading-spinner {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 14px;
+  color: #007bff;
+}
+
+/* Styles pour le container du spinner */
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+/* Spinner */
+.spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1); /* Couleur du bord extérieur */
+  border-left-color: #007bff; /* Couleur principale */
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite; /* Animation de rotation */
+}
+
+/* Animation de rotation */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
