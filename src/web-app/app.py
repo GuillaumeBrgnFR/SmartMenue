@@ -30,9 +30,14 @@ app.jinja_env.filters['zip'] = zip_filter
 # API pour récupérer les données sous forme JSON
 @app.route('/api/menu', methods=['GET'])
 def get_menu():
-    categories = "src/web-app/data/json/data.json" if os.path.exists("src/web-app/data/json/data.json") else "src/web-app/data/json/default.json"
-    with open(categories) as f:
+    data_file_path = os.path.join(app.root_path, 'data', 'json', 'data.json')
+    default_file_path = os.path.join(app.root_path, 'data', 'json', 'default.json')
+
+    categories_file = data_file_path if os.path.exists(data_file_path) else default_file_path
+
+    with open(categories_file, 'r', encoding='utf-8') as f:
         categories = json.load(f)
+
     return jsonify({'categories': categories})
 
 # Route pour servir les fichiers de React
@@ -123,6 +128,29 @@ def get_menu_name():
         return jsonify({'menuName': menu_name}), 200
     else:
         return jsonify({'menuName': None}), 200
+
+
+@app.route('/api/save-menu', methods=['POST'])
+def save_menu():
+    categories = request.get_json()
+
+    if not categories:
+        return jsonify({'message': 'Aucune donnée reçue'}), 400
+
+    # Chemin vers le fichier data.json
+    data_file_path = os.path.join(app.root_path, 'data', 'json', 'data.json')
+
+    # S'assurer que le dossier existe
+    os.makedirs(os.path.dirname(data_file_path), exist_ok=True)
+
+    try:
+        with open(data_file_path, 'w', encoding='utf-8') as f:
+            json.dump(categories, f, ensure_ascii=False, indent=4)
+        return jsonify({'message': 'Menu sauvegardé avec succès'}), 200
+    except Exception as e:
+        print(f"Erreur lors de la sauvegarde du menu : {e}")
+        return jsonify({'message': 'Erreur lors de la sauvegarde du menu'}), 500
+
 
 @app.route('/data/images/logos/<filename>')
 def get_logo_image(filename):

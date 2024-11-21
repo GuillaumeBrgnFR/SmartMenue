@@ -14,6 +14,74 @@ body {
     line-height: 1.8; /* Meilleure lisibilité */
 }
 
+/* MenuSection.css */
+.category-title-input {
+  flex: 1;
+  font-size: 1.5em;
+  font-weight: bold;
+  border: none;
+  background-color: transparent;
+}
+
+.category-title {
+  flex: 1;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.item-name-input,
+.item-price-input {
+  flex-shrink: 1;
+  flex-grow: 0;
+  padding: 5px;
+  font-size: 1em;
+  border: none;
+  background-color: transparent;
+}
+
+.item-name-input {
+  flex: 7;
+  /*min-width: 350px;*/
+  margin-right: 10px;
+  padding: 5px;
+  font-size: 1em;
+}
+
+.item-price-input {
+  flex: 3;
+  width: auto; /* Ajustez la largeur selon vos besoins */
+  text-align: right;
+  /*max-width: 150px;*/
+  padding: 5px;
+  font-size: 1em;
+}
+
+.item-name {
+  flex: 1;
+  margin-right: 10px;
+}
+
+.item-price {
+  width: 80px;
+  text-align: right;
+}
+
+.item-name-input,
+.item-name {
+  flex-grow: 7; /* 70% de l'espace */
+  margin-right: 10px;
+  padding: 5px;
+  font-size: 1em;
+}
+
+.item-price-input,
+.item-price {
+  flex-grow: 3; /* 30% de l'espace */
+  text-align: right;
+  padding: 5px;
+  font-size: 1em;
+}
+
 .App-header {
     display: flex; /* Active Flexbox */
     align-items: center; /* Aligne verticalement les enfants au centre */
@@ -66,6 +134,28 @@ body {
     margin-right: 20px; /* Espace entre le logo et le titre */
 }
 
+.custom-edit-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.custom-edit-button.edit-mode {
+  background-color: #d4af37;
+  color: white;
+}
+
+.custom-edit-button.save-mode {
+  background-color: green;
+  color: white;
+}
 /* Bouton personnalisé */
 .custom-button {
     background-color: #d4af37;
@@ -149,6 +239,10 @@ h1 {
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+.category-header input {
+  cursor: text;
+}
+
 .category-header:hover {
     background-color: #d4af37; /* Fond doré au survol */
     color: #2c2c2c; /* Texte noir au survol */
@@ -172,6 +266,7 @@ h1 {
 
 .category ul.visible {
     opacity: 1;
+    display: block;
     /*transform: translateY(0);*/
     max-height: 500px; /* Ajustez selon le contenu */
 }
@@ -207,6 +302,7 @@ h1 {
 /* Flèche */
 .arrow {
     font-size: 16px;
+    margin-left: auto;
     transition: transform 0.3s ease;
 }
 
@@ -228,3 +324,52 @@ footer {
     padding: 10px;
 }
 
+.visible {
+  display: block;
+}
+
+.hidden {
+  display: none;
+}
+
+.delete-button {
+  background: none;
+  border: none;
+  color: #ff4d4f; /* Couleur rouge pour indiquer la suppression */
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.delete-button:hover {
+  color: #ff7875; /* Couleur plus claire au survol */
+}
+
+
+.add-category-button {
+  display: flex;
+  align-items: center;
+  margin: 20px auto;
+  padding: 10px 20px;
+  font-size: 1em;
+  background-color: #2845a7; /* Couleur bleue */
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.add-category-button:hover {
+  background-color: #218838;
+}
+
+.add-item-button {
+  background: none;
+  border: none;
+  color: #2845a7; /* Couleur verte pour l'ajout */
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.add-item-button:hover {
+  color: #218838;
+}

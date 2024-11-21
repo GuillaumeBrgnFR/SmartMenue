@@ -1,1 +1,72 @@
-[{"category_name": "Entr\u00e9es", "category_items": ["Soupe de l\u00e9gumes", "Sardines \u00e0 l'huile d'arachide, mill\u00e9sim\u00e9es \u00abLa Quiberonnaise\u00bb", "Oeufs mimosa du Caf\u00e9 Fran\u00e7ais", "Foie gras de canard mi-cuit, chutney sur toast", "Oeuf poch\u00e9 au foie gras", "Cassolette d\u2019escargots \u00e0 la Bordelaise \u00ab Petits Gris des Charentes \u00bb"], "category_prices": ["10,00 \u20ac", "12,00 \u20ac", "07,00 \u20ac", "19,00 \u20ac", "15,00 \u20ac", "Invalid price"]}, {"category_name": "Fruits de mer", "category_items": ["Gillardeau n\u00b03", "Perles de l\u2019Imp\u00e9ratice n\u00b03 de Jo\u00ebl Dupuch", "Deux saucisses en accompagnement"], "category_prices": ["Invalid price", "Invalid price", "06,20 \u20ac"]}, {"category_name": "Salades", "category_items": ["Salade Caesar", "Salade du Sud Ouest", "Salade Oc\u00e9ane", "Salade de Crottin de Chavignol aux lardons", "Salade Mara\u00eech\u00e8re"], "category_prices": ["21,00 \u20ac", "21,00 \u20ac", "19,50 \u20ac", "18,00 \u20ac", "17,00 \u20ac"]}, {"category_name": "Plats du jour", "category_items": ["Entr\u00e9e + Plat", "Plat + Dessert", "Entr\u00e9e + Plat + Dessert"], "category_prices": ["29,00 \u20ac", "25,00 \u20ac", "27,80 \u20ac"]}]
+[
+    {
+        "category_items": [
+            "La Charcuterie",
+            "Charcuterie, Fromage"
+        ],
+        "category_name": "Planches à partager",
+        "item_description": [
+            "jambon de pays, pâté de campagne, fricandeau, saucisse, chorizo, boeuf séché",
+            "charcuterie, bleu, tome de pays, cantal, st nectaire"
+        ],
+        "item_prices": [
+            "17,90 €",
+            "18,90 €"
+        ]
+    },
+    {
+        "category_items": [
+            "Pounti Maison",
+            "Salade de Chèvre Chaud",
+            "Salade du Buron"
+        ],
+        "category_name": "Entrées et salades",
+        "item_description": [
+            "cake auvergnat, lard, pruneaux, feuilles de blettes",
+            "toast de chèvre chaud au miel, poitrine de porc, tomates, oeuf",
+            "boeuf séché, cantal, bleu d'Auvergne, tomates, oeuf, croutons"
+        ],
+        "item_prices": [
+            "09,00 €",
+            "15,90 €",
+            "15,90 €"
+        ]
+    },
+    {
+        "category_items": [
+            "Nuggets de Poulet",
+            "Cheeseburger",
+            "Steak Haché"
+        ],
+        "category_name": "Menu enfant",
+        "item_description": [
+            "accompagnement, truffade, frites maison ou légumes du moment",
+            "accompagnement, truffade, frites maison ou légumes du moment",
+            "accompagnement, truffade, frites maison ou légumes du moment"
+        ],
+        "item_prices": [
+            "12,00 €"
+        ]
+    },
+    {
+        "category_items": [
+            "Glace Haribo",
+            "Mousse au Chocolat",
+            "Fromage Blanc"
+        ],
+        "category_name": "Desserts",
+        "item_description": [],
+        "item_prices": [
+            "5,00 €"
+        ]
+    },
+    {
+        "category_name": "Boissons",
+        "category_items": [
+            "Coca"
+        ],
+        "item_prices": [
+            "1,00€"
+        ]
+    }
+]

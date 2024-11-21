@@ -1,79 +1,16 @@
-import React, { useState, useEffect } from "react";
+// App.js
+import React, { useState, useEffect, useRef } from "react";
 import "./App.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronDown, faChevronRight } from "@fortawesome/free-solid-svg-icons";
-import { faUpload } from "@fortawesome/free-solid-svg-icons";
+import Menu from "./Menu";
 import Modal from "./Modal";
-
-
-
-function Menu() {
-  const [categories, setCategories] = useState([]);
-  const [activeIndex, setActiveIndex] = useState(null);
-
-  useEffect(() => {
-    fetch('/api/menu')
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(`Erreur HTTP ! statut : ${response.status}`);
-        }
-        return response.json();
-      })
-      .then((data) => {
-        if (!data || !data.categories || data.categories.length === 0) {
-          throw new Error("Données JSON invalides !");
-        }
-        setCategories(data.categories);
-      })
-      .catch((error) => {
-        console.error('Erreur lors de la récupération des catégories :', error);
-      });
-  }, []);
-
-  const toggleVisibility = (index) => {
-    setActiveIndex(index === activeIndex ? null : index);
-  };
-
-  return (
-    <div className="menu-container">
-      {categories.map((category, index) => (
-        <MenuSection
-          key={index}
-          title={category.category_name}
-          items={category.category_items}
-          prices={category.item_prices}
-          isVisible={index === activeIndex}
-          onClick={() => toggleVisibility(index)}
-        />
-      ))}
-    </div>
-  );
-}
-
-
-function MenuSection({ title, items = [], prices = [], isVisible, onClick }) {
-  return (
-    <div className="category">
-      <h2 onClick={onClick} className="category-header">
-        <span className="category-title">{title}</span>
-        <span className={`arrow ${isVisible ? "down" : "right"}`}>▼</span>
-      </h2>
-      <ul className={isVisible ? "visible" : ""}>
-        {items.map((item, index) => (
-          <li key={index}>
-            <span className="item-name">{item}</span>
-            <span className="item-price">{prices[index]}</span>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-}
+import { FaSave, FaPencilAlt } from "react-icons/fa";
 
 
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [menuTitle, setMenuTitle] = useState("Menu");
+  const [isEditMode, setIsEditMode] = useState(false);
+  const menuRef = useRef(null); // Référence vers le composant Menu
 
   useEffect(() => {
     fetch("/api/get-menu-name")
@@ -105,25 +42,81 @@ function App() {
     closeModal();
   };
 
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img
-          src="/images/logos/logo.png"
-          alt="Logo"
-          className="restaurant-logo"
-        />
-        <h1 className="page-title">{menuTitle}</h1>
-        <button className="custom-button" onClick={openModal}>
-          Importer un menu
-        </button>
-      </header>
-      <div className="container">
-        <Menu />
-      </div>
-      <Modal isOpen={isModalOpen} onClose={closeModal} onSubmit={handleSubmit} />
-    </div>
-  );
+    const handleSave = () => {
+    if (menuRef.current) {
+      const categories = menuRef.current.getCategories();
+
+      // Envoyer les données au backend
+      fetch('/api/save-menu', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(categories),
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error('Erreur lors de la sauvegarde du menu');
+          }
+          return response.json();
+        })
+        .then((data) => {
+          console.log('Menu sauvegardé avec succès');
+          // Recharger la page
+          window.location.reload();
+        })
+        .catch((error) => {
+          console.error('Erreur :', error);
+          alert('Une erreur est survenue lors de la sauvegarde du menu');
+        });
+    }
+  };
+
+  // Fonction pour basculer le mode édition
+  const toggleEditMode = () => {
+    if (isEditMode) {
+      // Si on quitte le mode édition, on sauvegarde les modifications
+      handleSave();
+    }
+    setIsEditMode((prevMode) => !prevMode);
+  };
+
+
+    return (
+        <div className="App">
+            <header className="App-header">
+                <img
+                    src="/images/logos/logo.png"
+                    alt="Logo"
+                    className="restaurant-logo"
+                />
+                <h1 className="page-title">{menuTitle}</h1>
+                <div className="header-buttons">
+                    <button className="custom-button" onClick={openModal}>
+                        Importer un menu
+                    </button>
+                </div>
+            </header>
+            <div className="container">
+                <Menu ref={menuRef} isEditMode={isEditMode}/>
+            </div>
+            <button
+                className={`custom-edit-button ${isEditMode ? "save-mode" : "edit-mode"}`}
+                onClick={toggleEditMode}
+            >
+                {isEditMode ? (
+                    <>
+                        <FaSave style={{marginRight: "8px"}}/> Sauvegarder
+                    </>
+                ) : (
+                    <>
+                        <FaPencilAlt style={{marginRight: "8px"}}/> Édition
+                    </>
+                )}
+            </button>
+            <Modal isOpen={isModalOpen} onClose={closeModal} onSubmit={handleSubmit}/>
+        </div>
+    );
 }
 
 export default App;
