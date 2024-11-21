@@ -344,6 +344,45 @@ footer {
   color: #ff7875; /* Couleur plus claire au survol */
 }
 
+.item-details {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.item-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.item-allergene {
+  font-size: 0.9em; /* Taille de police légèrement plus petite */
+  color: #666666; /* Couleur grise pour distinction */
+  margin-top: 5px; /* Espacement au-dessus */
+  text-align: left; /* Aligner à gauche */
+}
+
+.item-edit {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.item-inputs {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.item-allergene-input {
+  width: 100%;
+  padding: 5px;
+  font-size: 1em;
+  border: none;
+  background-color: transparent;
+  margin-top: 5px; /* Espacement au-dessus */
+}
 
 .add-category-button {
   display: flex;

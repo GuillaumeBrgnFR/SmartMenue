@@ -1,105 +1,63 @@
 [
     {
         "category_items": [
-            "Cuisse de canard confit, frites maison, salade",
-            "Le magret de canard servi entier, frites maison ou salade, sauce Bordelaise"
+            "La Charcuterie - Jambon de pays, pâté de campagne, fricandeau, saucisse, chorizo, boeuf séché",
+            "Charcuterie, Fromage - Charcuterie, bleu, tome de pays, cantal, st nectaire"
         ],
-        "category_name": "De la ferme",
+        "category_name": "Planche à partager",
         "item_allergene": [
-            " \"canard, gluten\"",
-            " \"canard, gluten\""
+            " `gluten, lait, sulfites`",
+            " `lait, gluten, sulfites`"
         ],
         "item_prices": [
+            "17,90 €",
+            "18,90 €"
+        ]
+    },
+    {
+        "category_items": [
+            "Pounti Maison - Cake auvergnat, lard, pruneaux, feuilles de blettes",
+            "Salade de Chèvre Chaud - Toast de chèvre chaud au miel, poitrine de porc, tomates, oeuf",
+            "Salade du Buron - Boeuf séché, cantal, bleu d'Auvergne, tomates, oeuf, croutons",
+            "Oeufs"
+        ],
+        "category_name": "Entrées et salades",
+        "item_allergene": [
+            " Oeuf, lait, blé, cochon",
+            " Oeuf, lait, blé, miel, porc",
+            " Oeuf, lait, blé",
+            "oeufs"
+        ],
+        "item_prices": [
+            "09,00 €",
             "15,90 €",
-            "22,90 €"
+            "15,90 €",
+            "01.00 €"
         ]
     },
     {
         "category_items": [
-            "Poisson du moment, selon arrivage, accompagné de légumes et riz"
+            "Nuggets de poulet, Cheeseburger ou Steak haché - Accompagnement, truffade, frites maison ou légumes du moment",
+            "Glace Haribo, Mousse au chocolat, ou Fromage blanc"
         ],
-        "category_name": "A la criée",
+        "category_name": "Menu enfant",
         "item_allergene": [
-            " Poisson, crustacés, céréales contenant du gluten, moutarde, sésame"
+            " \"Gluten, Oeufs, Lait, Fruits à coques, Soja, Sulfites\"",
+            " \"Lait, Fruits à coques\""
         ],
         "item_prices": [
-            "16,50 €"
+            "12,00 €"
         ]
     },
     {
         "category_items": [
-            "1 soda au choix (Coca Cola, limonade, Ice Tea pêche, sirop), Steak haché ou Fish’n’Chips, Glace (chocolat, vanille, fraise) ou Moelleux au chocolat"
+            "Glace vanille",
+            "Gatal chocolat"
         ],
-        "category_name": "Menu Petits Girondins",
-        "item_allergene": [
-            "orge, soja, poisson, gluten, fruits à coque, lait, œufs"
-        ],
+        "category_name": "Desserts",
         "item_prices": [
-            "09,90 €"
-        ]
-    },
-    {
-        "category_items": [
-            "Tapenade d’olives noires maison et ses toasts",
-            "Tatin de légumes au pesto et salade fraîcheur (Crudités)",
-            "Salade de fruits ou Dessert au choix"
-        ],
-        "category_name": "Menu végétarien",
-        "item_allergene": [
-            " Olives, gluten",
-            " Gluten, fruits à coque, lait, œufs",
-            " Fruits"
-        ],
-        "item_prices": [
-            "19,50 €"
-        ]
-    },
-    {
-        "category_items": [
-            "Niniche Bordelaise",
-            "Panna cotta (fruits rouges ou caramel)",
-            "Tiramisu",
-            "Crème brie",
-            "Crème Citron / Passion Spéculoos",
-            "Coulant au chocolat",
-            "Les trois boules de glace (Vanille, chocolat, fraise)",
-            "Pain perdu et sa glace vanille",
-            "Café: ponrman"
-        ],
-        "category_name": "Nos Desserts",
-        "item_allergene": [
-            " 'lait, gluten, fruits à coque'",
-            " 'lait, gluten'",
-            " 'lait, gluten, fruits à coque, œufs'",
-            " 'lait, gluten'",
-            " 'lait, gluten, œufs'",
-            " 'lait, gluten, œufs'",
-            " 'lait, gluten, fruits à coque'",
-            " 'lait, gluten, œufs'",
-            " 'lait, gluten'"
-        ],
-        "item_prices": [
-            "06,90 €",
-            "06,90 €",
-            "07,50 €",
-            "150,00 €",
-            "50,00 €",
-            "07,50 €",
-            "150,00 €",
-            "08,50 €",
-            "08,50 €"
-        ]
-    },
-    {
-        "category_items": [
-            "Brebis fermier de la vallée d’Ossau, confiture de cerises noires"
-        ],
-        "category_name": "Fromages",
-        "item_allergene": [
-            " Brebis, lait"
-        ],
-        "item_prices": [
-            "07,90 €"
+            "",
+            "15.00 €"
         ]
     }
 ]
