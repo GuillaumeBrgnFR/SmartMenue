@@ -1,63 +1,62 @@
 [
     {
         "category_items": [
-            "La Charcuterie - Jambon de pays, pâté de campagne, fricandeau, saucisse, chorizo, boeuf séché",
-            "Charcuterie, Fromage - Charcuterie, bleu, tome de pays, cantal, st nectaire"
+            "La Charcuterie - jambon de pays, pâté de campagne, fricandeau, saucisse, chorizo, bœuf séché",
+            "Charcuterie, Fromage - Charcuterie, bleu, tome de pays, cantal, st nectaire",
+            "Saucisson"
         ],
         "category_name": "Planche à partager",
         "item_allergene": [
-            " `gluten, lait, sulfites`",
-            " `lait, gluten, sulfites`"
+            " 'gluten, lait, sulfites'",
+            " 'lait, gluten, sulfites'",
+            "Viandasse"
         ],
         "item_prices": [
-            "17,90 €",
-            "18,90 €"
+            "45 €",
+            "- €",
+            "67.00 €",
+            "02.00 €",
+            "03.00 €",
+            "09.00 €",
+            "08.00 €"
         ]
     },
     {
         "category_items": [
-            "Pounti Maison - Cake auvergnat, lard, pruneaux, feuilles de blettes",
-            "Salade de Chèvre Chaud - Toast de chèvre chaud au miel, poitrine de porc, tomates, oeuf",
-            "Salade du Buron - Boeuf séché, cantal, bleu d'Auvergne, tomates, oeuf, croutons",
-            "Oeufs"
+            "Pounti Maison - cake auvergnat, lard, pruneaux, feuilles de blettes",
+            "Salade de Chèvre Chaud - toast de chèvre chaud au miel, poitrine de porc, tomates, œuf",
+            "Salade du Buron - bœuf séché, cantal, bleu d'Auvergne, tomates, œuf, croutons et",
+            "Laitue",
+            "Carotte"
         ],
         "category_name": "Entrées et salades",
         "item_allergene": [
-            " Oeuf, lait, blé, cochon",
-            " Oeuf, lait, blé, miel, porc",
-            " Oeuf, lait, blé",
-            "oeufs"
+            " 'lait, œuf, blé, porc'",
+            " 'lait, œuf, blé, porc'",
+            " 'lait, œuf, blé'",
+            null,
+            "Beta carotène"
         ],
         "item_prices": [
-            "09,00 €",
-            "15,90 €",
-            "15,90 €",
-            "01.00 €"
+            "- €",
+            "- €",
+            "- €",
+            "- €",
+            "21.00 €"
         ]
     },
     {
         "category_items": [
-            "Nuggets de poulet, Cheeseburger ou Steak haché - Accompagnement, truffade, frites maison ou légumes du moment",
-            "Glace Haribo, Mousse au chocolat, ou Fromage blanc"
+            "Nugget's de Poulet, Cheeseburger ou Steak Haché - Accompagnement, truffade, frites maison ou légumes du moment",
+            "Glace Haribo, Mousse au Chocolat, ou Fromage Blanc"
         ],
         "category_name": "Menu enfant",
         "item_allergene": [
-            " \"Gluten, Oeufs, Lait, Fruits à coques, Soja, Sulfites\"",
+            " \"Gluten, Oeufs, Lait, Fruits à coques\"",
             " \"Lait, Fruits à coques\""
         ],
         "item_prices": [
-            "12,00 €"
-        ]
-    },
-    {
-        "category_items": [
-            "Glace vanille",
-            "Gatal chocolat"
-        ],
-        "category_name": "Desserts",
-        "item_prices": [
-            "",
-            "15.00 €"
+            "- €"
         ]
     }
 ]

@@ -1,15 +1,15 @@
-// App.js
 import React, { useState, useEffect, useRef } from "react";
 import "./App.css";
 import Menu from "./Menu";
 import Modal from "./Modal";
 import { FaSave, FaPencilAlt } from "react-icons/fa";
-
+import QRCode from "react-qr-code"; // Importer la bibliothèque QR Code
 
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [menuTitle, setMenuTitle] = useState("Menu");
   const [isEditMode, setIsEditMode] = useState(false);
+  const [showQRCode, setShowQRCode] = useState(false); // État pour afficher le QR Code
   const menuRef = useRef(null); // Référence vers le composant Menu
 
   useEffect(() => {
@@ -42,11 +42,10 @@ function App() {
     closeModal();
   };
 
-    const handleSave = () => {
+  const handleSave = () => {
     if (menuRef.current) {
       const categories = menuRef.current.getCategories();
 
-      // Envoyer les données au backend
       fetch('/api/save-menu', {
         method: 'POST',
         headers: {
@@ -62,7 +61,6 @@ function App() {
         })
         .then((data) => {
           console.log('Menu sauvegardé avec succès');
-          // Recharger la page
           window.location.reload();
         })
         .catch((error) => {
@@ -72,51 +70,61 @@ function App() {
     }
   };
 
-  // Fonction pour basculer le mode édition
   const toggleEditMode = () => {
     if (isEditMode) {
-      // Si on quitte le mode édition, on sauvegarde les modifications
       handleSave();
     }
     setIsEditMode((prevMode) => !prevMode);
   };
 
+  const toggleQRCode = () => {
+    setShowQRCode(true); // Afficher le QR Code
+  };
 
-    return (
-        <div className="App">
-            <header className="App-header">
-                <img
-                    src="/images/logos/logo.png"
-                    alt="Logo"
-                    className="restaurant-logo"
-                />
-                <h1 className="page-title">{menuTitle}</h1>
-                <div className="header-buttons">
-                    <button className="custom-button" onClick={openModal}>
-                        Importer un menu
-                    </button>
-                </div>
-            </header>
-            <div className="container">
-                <Menu ref={menuRef} isEditMode={isEditMode}/>
-            </div>
-            <button
-                className={`custom-edit-button ${isEditMode ? "save-mode" : "edit-mode"}`}
-                onClick={toggleEditMode}
-            >
-                {isEditMode ? (
-                    <>
-                        <FaSave style={{marginRight: "8px"}}/> Sauvegarder
-                    </>
-                ) : (
-                    <>
-                        <FaPencilAlt style={{marginRight: "8px"}}/> Édition
-                    </>
-                )}
-            </button>
-            <Modal isOpen={isModalOpen} onClose={closeModal} onSubmit={handleSubmit}/>
+  return (
+    <div className="App">
+      <header className="App-header">
+        <img
+          src="/images/logos/logo.png"
+          alt="Logo"
+          className="restaurant-logo"
+        />
+        <h1 className="page-title">{menuTitle}</h1>
+        <div className="header-buttons">
+          <button className="custom-button" onClick={openModal}>
+            Importer un menu
+          </button>
         </div>
-    );
+      </header>
+      <div className="container">
+        <Menu ref={menuRef} isEditMode={isEditMode} />
+      </div>
+      <button
+        className={`custom-edit-button ${isEditMode ? "save-mode" : "edit-mode"}`}
+        onClick={toggleEditMode}
+      >
+        {isEditMode ? (
+          <>
+            <FaSave style={{ marginRight: "8px" }} /> Sauvegarder
+          </>
+        ) : (
+          <>
+            <FaPencilAlt style={{ marginRight: "8px" }} /> Édition
+          </>
+        )}
+      </button>
+      {!showQRCode ? (
+          <button className="qr-code-button" onClick={toggleQRCode}>
+            Générer le QR Code
+          </button>
+        ) : (
+          <div className="qr-code-container">
+            <QRCode value="http://192.168.203.200:5001/" size={450} />
+          </div>
+        )}
+      <Modal isOpen={isModalOpen} onClose={closeModal} onSubmit={handleSubmit} />
+    </div>
+  );
 }
 
 export default App;

@@ -49,21 +49,16 @@ def serve_react(path):
 
 @app.route('/images/logos/<filename>')
 def serve_logo(filename):
-    print(f"app.root_path: {app.root_path}")
 
     # Chemin absolu vers le répertoire contenant les logos
     logo_directory = os.path.join(app.root_path, 'data', 'images', 'logos')
-    print(f"logo_directory: {logo_directory}")
 
     # Chemin complet vers le fichier logo
     full_path = os.path.join(logo_directory, filename)
-    print(f"full_path: {full_path}")
 
     if os.path.exists(os.path.join(logo_directory, filename)):
-        print(f"hey dude: {os.path.join(logo_directory, filename)}")
         return send_file(os.path.join(logo_directory, filename))
     else:
-        print('so sad')
         abort(404)  # Fichier non trouvé
 
 @app.route('/api/upload-menu', methods=['POST'])
@@ -134,21 +129,28 @@ def save_menu():
 
     if not categories:
         return jsonify({'message': 'Aucune donnée reçue'}), 400
-
+    print(f"categories: {categories}")
     # Chemin vers le fichier data.json
     data_file_path = os.path.join(app.root_path, 'data', 'json', 'data.json')
 
     # S'assurer que le dossier existe
     os.makedirs(os.path.dirname(data_file_path), exist_ok=True)
     for dictionnary in categories:
+        print(f"dictionnary: {dictionnary}")
         for i in range(len(dictionnary["item_prices"])):
             price = dictionnary["item_prices"][i]
-            if price is not None and price !="" and price[-1] != "€":
-                print(price)
-                price = f"{float(price):05.2f}"
-                print(f"price after: {price}")
-                price = price + " €"
+            if price == "Invalid price" or price == "" or price is None:
+                price = "- €"
                 dictionnary["item_prices"][i] = price
+            elif price is not None and price != "" and price[-1] != "€":
+                try:
+                    price = f"{float(price):05.2f}"
+                    print(f"price after: {price}")
+                    price = price + " €"
+                except:
+                    pass
+                finally:
+                    dictionnary["item_prices"][i] = price
     try:
         with open(data_file_path, 'w', encoding='utf-8') as f:
             json.dump(categories, f, ensure_ascii=False, indent=4)

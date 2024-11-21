@@ -198,13 +198,15 @@ body {
 /* Conteneur principal */
 .menu-container {
     width: 90%;
-    max-width: 800px; /* Limiter la largeur pour un style plus centré */
-    margin: 40px auto; /* Centrer et espacer */
-    border: 2px solid #d4af37; /* Bordure dorée */
+    max-width: 800px;
+    margin: 40px auto;
     padding: 20px;
-    background-color: #ffffff; /* Fond blanc élégant */
-    border-radius: 8px; /* Coins légèrement arrondis */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ombre légère */
+    /*max-height: 600px;*/ /* Hauteur maximale pour l'ensemble du menu */
+    overflow-y: auto; /* Activation du scroll vertical */
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 2px solid #d4af37;
 }
 
 /* Titre principal */
@@ -269,6 +271,24 @@ h1 {
     display: block;
     /*transform: translateY(0);*/
     max-height: 500px; /* Ajustez selon le contenu */
+    overflow-y: auto; /* Activer le scroll vertical si nécessaire */
+    padding: 10px 20px;
+    transition: max-height 0.5s ease, opacity 0.5s ease;
+    border-top: 1px solid #d4af37; /* Optionnel pour délimiter */
+}
+
+.category ul.visible::-webkit-scrollbar {
+    width: 8px;
+}
+.category ul.visible::-webkit-scrollbar-thumb {
+    background: #d4af37; /* Couleur dorée pour le scrollbar */
+    border-radius: 10px;
+}
+.category ul.visible::-webkit-scrollbar-thumb:hover {
+    background: #c9a76a; /* Couleur légèrement plus foncée au survol */
+}
+.category ul.visible::-webkit-scrollbar-track {
+    background: #f5f5f5; /* Couleur du fond */
 }
 
 /* Items */
@@ -443,4 +463,30 @@ footer {
   to {
     transform: rotate(360deg);
   }
+}
+
+.qr-code-button {
+  background-color: #d4af37;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin: 0 auto; /* Centrage horizontal */
+  display: block; /* Permet à margin: auto de fonctionner */
+  margin-top: 60px;
+}
+
+.qr-code-container {
+  margin-top: 20px;
+  display: flex; /* Active Flexbox */
+  justify-content: center; /* Centre horizontalement */
+  align-items: center; /* Centre verticalement si nécessaire */
+}
+
+.qr-code-button:hover {
+  background-color: #c9a76a;
 }
