@@ -7,7 +7,6 @@ import os
 
 from werkzeug.utils import secure_filename
 
-print(os.getcwd())
 from src.pipelines.image_to_json_pipeline import image_to_json_pipeline
 
 

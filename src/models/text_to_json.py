@@ -39,6 +39,6 @@ def normalize_json(json_data):
                 formatted_price = f"{float(price):05.2f}".replace('.', ',') + " €"
                 formatted_prices.append(formatted_price)
             except (ValueError, TypeError):
-                formatted_prices.append("Invalid price")
+                formatted_prices.append("- €")
         section["item_prices"] = formatted_prices
     return json_data
