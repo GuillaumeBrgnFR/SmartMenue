@@ -29,6 +29,11 @@ app.jinja_env.filters['zip'] = zip_filter
 # API pour récupérer les données sous forme JSON
 @app.route('/api/menu', methods=['GET'])
 def get_menu():
+    """
+    Function that search data to display the content of the menu.
+    Returns:
+
+    """
     data_file_path = os.path.join(app.root_path, 'data', 'json', 'data.json')
     default_file_path = os.path.join(app.root_path, 'data', 'json', 'default.json')
     categories_file = data_file_path if os.path.exists(data_file_path) else default_file_path
@@ -48,7 +53,14 @@ def serve_react(path):
 
 @app.route('/images/logos/<filename>')
 def serve_logo(filename):
+    """
+    Function that search the logo to display it on the web page
+    Args:
+        filename:
 
+    Returns:
+
+    """
     # Chemin absolu vers le répertoire contenant les logos
     logo_directory = os.path.join(app.root_path, 'data', 'images', 'logos')
 
@@ -62,6 +74,11 @@ def serve_logo(filename):
 
 @app.route('/api/upload-menu', methods=['POST'])
 def upload_menu():
+    """
+    Function that save the menu as a JSON.
+    Returns:
+
+    """
     file = request.files['menu']
     image = Image.open(file)
     save_dir = "src/web-app/data/images/"
@@ -74,6 +91,11 @@ def upload_menu():
 
 @app.route('/api/upload-logo', methods=['POST'])
 def upload_logo():
+    """
+    Function that gte the logo and save it.
+    Returns:
+
+    """
     file = request.files['logo']
     filename = secure_filename(file.filename)
     extension = os.path.splitext(filename)[1]  # Récupère l'extension avec le point (par exemple, '.png')
@@ -92,6 +114,11 @@ def upload_logo():
 
 @app.route('/api/save-menu-name', methods=['POST'])
 def save_menu_name():
+    """
+    Function that save the menu name in a .txt file.
+    Returns:
+
+    """
     data = request.get_json()
     menu_name = data.get('menuName')
 
@@ -111,6 +138,11 @@ def save_menu_name():
 
 @app.route('/api/get-menu-name', methods=['GET'])
 def get_menu_name():
+    """
+    Function that get the menu name from the .txt file.
+    Returns:
+
+    """
     save_dir = os.path.join(app.root_path, 'data', 'menu_name')
     save_path = os.path.join(save_dir, 'menu_name.txt')
 
@@ -124,6 +156,11 @@ def get_menu_name():
 
 @app.route('/api/save-menu', methods=['POST'])
 def save_menu():
+    """
+    Function that get the menu uploaded by the user
+    Returns:
+
+    """
     categories = request.get_json()
 
     if not categories:
@@ -161,6 +198,14 @@ def save_menu():
 
 @app.route('/data/images/logos/<filename>')
 def get_logo_image(filename):
+    """
+    Function that get the logo image saved by the user.
+    Args:
+        filename:
+
+    Returns:
+
+    """
     print("Trying to get logo image: {}".format(filename))
     return send_from_directory('src/web-app/data/images/logos/', filename)
 
