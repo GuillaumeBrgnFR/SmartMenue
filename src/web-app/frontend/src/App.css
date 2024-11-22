@@ -95,16 +95,29 @@ body {
 
 @media (max-width: 600px) {
     .App-header {
-        flex-direction: column;
-        height: auto;
+        flex-direction: column; /* Aligne les éléments en colonne */
+        align-items: center; /* Centre les éléments horizontalement */
+        height: auto; /* Adapte la hauteur automatiquement */
+        padding: 20px 10px; /* Espacement autour du contenu */
+    }
+    .restaurant-logo {
+        margin: 0 auto 10px auto; /* Centre le logo et ajoute un espace en bas */
+        display: block; /* S'assure qu'il s'affiche comme un bloc */
+        width: 70px; /* Augmente légèrement la taille pour équilibrer avec le texte */
+        height: 70px; /* Ajuste pour garder une proportion carrée */
     }
     .page-title {
-        position: static;
-        transform: none;
-        margin-top: 10px;
+        position: static; /* Désactive le positionnement absolu */
+        transform: none; /* Supprime la transformation */
+        margin: 10px 0; /* Espace autour du titre */
+        text-align: center; /* Centre le texte */
+        white-space: normal; /* Permet au texte de passer à la ligne si nécessaire */
+        width: 100%; /* S'assure que le titre occupe tout l'espace */
     }
     .custom-button {
-        margin-top: 10px;
+        margin-top: 10px; /* Espace entre le titre et le bouton */
+        width: 100%; /* Le bouton prend toute la largeur */
+        text-align: center; /* Centre le texte dans le bouton */
     }
 }
 
@@ -255,26 +268,28 @@ h1 {
     margin: 0;
     opacity: 0;
     padding: 0 20px;
-    display: block;
     flex-direction: column; /* Aligne les items verticalement */
     align-items: flex-start; /* Aligne les items sur la gauche */
     justify-content: flex-start; /* Garde un alignement propre */
     list-style: none;
-    transform: translateY(-10px);
-    transition: max-height 0.5s ease, opacity 0.5s ease;
+    transform: translateY(-20px);
+    transition: max-height 0.5s ease, opacity 0.5s ease, transform 0.5s ease;
     max-height: 0;
     overflow: hidden;
 }
 
 .category ul.visible {
     opacity: 1;
-    display: block;
-    /*transform: translateY(0);*/
+    transform: translateY(0);
     max-height: 500px; /* Ajustez selon le contenu */
     overflow-y: auto; /* Activer le scroll vertical si nécessaire */
     padding: 10px 20px;
     transition: max-height 0.5s ease, opacity 0.5s ease;
     border-top: 1px solid #d4af37; /* Optionnel pour délimiter */
+}
+
+.category ul.hidden {
+    max-height: 0;
 }
 
 .category ul.visible::-webkit-scrollbar {
@@ -293,9 +308,9 @@ h1 {
 
 /* Items */
 .category ul li {
-    display: flex;
     justify-content: space-between;
     align-items: center;
+    border-radius: 10px;
     transition: opacity 0.3s ease, transform 0.3s ease;
     list-style: none;
     padding: 10px 0;
@@ -345,11 +360,15 @@ footer {
 }
 
 .visible {
-  display: block;
+    opacity: 1;
+    transform: translateY(0);
+    max-height: 1000px; /* Ajustez selon la hauteur max */
 }
 
 .hidden {
-  display: none;
+    opacity: 0;
+    transform: translateY(-20px);
+    max-height: 0;
 }
 
 .delete-button {

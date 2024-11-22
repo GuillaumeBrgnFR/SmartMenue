@@ -3,7 +3,7 @@
         "category_items": [
             "La Charcuterie - jambon de pays, pâté de campagne, fricandeau, saucisse, chorizo, bœuf séché",
             "Charcuterie, Fromage - Charcuterie, bleu, tome de pays, cantal, st nectaire",
-            "Saucisson"
+            "Saucissonage"
         ],
         "category_name": "Planche à partager",
         "item_allergene": [
@@ -48,15 +48,19 @@
     {
         "category_items": [
             "Nugget's de Poulet, Cheeseburger ou Steak Haché - Accompagnement, truffade, frites maison ou légumes du moment",
-            "Glace Haribo, Mousse au Chocolat, ou Fromage Blanc"
+            "Glace Haribo, Mousse au Chocolat, ou Fromage Blanc",
+            "Glace vanille"
         ],
         "category_name": "Menu enfant",
         "item_allergene": [
             " \"Gluten, Oeufs, Lait, Fruits à coques\"",
-            " \"Lait, Fruits à coques\""
+            " \"Lait, Fruits à coques\"",
+            "Vanille"
         ],
         "item_prices": [
-            "- €"
+            "- €",
+            "- €",
+            "12.00 €"
         ]
     }
 ]

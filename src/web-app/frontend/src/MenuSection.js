@@ -1,9 +1,21 @@
 // MenuSection.js
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { FaTrash, FaPlus } from "react-icons/fa";
 import "./App.css";
 
+
 function MenuSection({ index, category, isVisible, onToggle, isEditMode, updateCategory, deleteCategory }) {
+  const listRef = useRef(null);
+
+  useEffect(() => {
+  if (listRef.current) {
+    if (isVisible) {
+      listRef.current.classList.add('visible');
+    } else {
+      listRef.current.classList.remove('visible');
+    }
+  }
+}, [isVisible]);
   // Fonction pour mettre à jour le nom de la section
   const handleCategoryNameChange = (e) => {
     const updatedCategory = { ...category, category_name: e.target.value };
