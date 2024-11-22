@@ -68,7 +68,7 @@ body {
 
 .item-name-input,
 .item-name {
-  flex-grow: 7; /* 70% de l'espace */
+  flex-grow: 9; /* 70% de l'espace */
   margin-right: 10px;
   padding: 5px;
   font-size: 1em;
@@ -76,7 +76,7 @@ body {
 
 .item-price-input,
 .item-price {
-  flex-grow: 3; /* 30% de l'espace */
+  flex-grow: 1; /* 30% de l'espace */
   text-align: right;
   padding: 5px;
   font-size: 1em;
@@ -95,29 +95,40 @@ body {
 
 @media (max-width: 600px) {
     .App-header {
+        display: flex;
         flex-direction: column; /* Aligne les éléments en colonne */
         align-items: center; /* Centre les éléments horizontalement */
-        height: auto; /* Adapte la hauteur automatiquement */
-        padding: 20px 10px; /* Espacement autour du contenu */
+        justify-content: center; /* Centre les éléments verticalement */
+        height: auto; /* Adapte la hauteur à la taille des enfants */
+        padding: 20px; /* Ajoute de l'espace autour */
+        gap: 50px !important; /* Ajoute un espace uniforme entre les enfants */
     }
+
     .restaurant-logo {
-        margin: 0 auto 10px auto; /* Centre le logo et ajoute un espace en bas */
-        display: block; /* S'assure qu'il s'affiche comme un bloc */
-        width: 70px; /* Augmente légèrement la taille pour équilibrer avec le texte */
-        height: 70px; /* Ajuste pour garder une proportion carrée */
+        display: block; /* Traite le logo comme un bloc */
+        margin: 0 auto !important; /* Centre horizontalement */
+        width: 80px; /* Taille ajustée pour le logo */
+        height: 80px; /* Garde des proportions carrées */
     }
+
     .page-title {
-        position: static; /* Désactive le positionnement absolu */
-        transform: none; /* Supprime la transformation */
-        margin: 10px 0; /* Espace autour du titre */
+        margin: 0 !important; /* Supprime toute marge conflictuelle */
+        padding: 0 !important; /* Supprime tout padding conflictuel */
         text-align: center; /* Centre le texte */
-        white-space: normal; /* Permet au texte de passer à la ligne si nécessaire */
-        width: 100%; /* S'assure que le titre occupe tout l'espace */
+        white-space: normal; /* Permet au texte de passer à la ligne */
+        width: 100%; /* Prend toute la largeur disponible */
     }
+
     .custom-button {
-        margin-top: 10px; /* Espace entre le titre et le bouton */
-        width: 100%; /* Le bouton prend toute la largeur */
+        width: 100%; /* Le bouton occupe toute la largeur */
         text-align: center; /* Centre le texte dans le bouton */
+    }
+
+    .menu-container {
+        width: 100% !important; /* Prend toute la largeur disponible */
+        max-width: none; /* Désactive la largeur maximale */
+        padding: 10px; /* Ajoute un léger padding intérieur */
+        box-shadow: none; /* Supprime l'ombre pour un design plus simple */
     }
 }
 
@@ -456,7 +467,7 @@ footer {
   margin-top: 10px;
   text-align: center;
   font-size: 14px;
-  color: #007bff;
+  color: #d4af37;
 }
 
 /* Styles pour le container du spinner */
@@ -470,7 +481,7 @@ footer {
 /* Spinner */
 .spinner {
   border: 4px solid rgba(0, 0, 0, 0.1); /* Couleur du bord extérieur */
-  border-left-color: #007bff; /* Couleur principale */
+  border-left-color: #d4af37; /* Couleur principale */
   border-radius: 50%;
   width: 40px;
   height: 40px;
