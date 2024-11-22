@@ -1,66 +1,99 @@
 [
     {
         "category_items": [
-            "La Charcuterie - jambon de pays, pâté de campagne, fricandeau, saucisse, chorizo, bœuf séché",
-            "Charcuterie, Fromage - Charcuterie, bleu, tome de pays, cantal, st nectaire",
-            "Saucissonage"
+            "Cuisse de canard confit, frites maison, salade",
+            "Le magret de canard servi entier, frites maison ou salade, sauce Bordelaise",
+            "Guillaume",
+            "Romain erst super beau"
         ],
-        "category_name": "Planche à partager",
+        "category_name": "De la ferme",
         "item_allergene": [
-            " 'gluten, lait, sulfites'",
-            " 'lait, gluten, sulfites'",
-            "Viandasse"
+            " \"canard, gluten\"",
+            " \"canard, gluten\"",
+            "FFF",
+            "Pas d'albergebe"
         ],
         "item_prices": [
-            "45 €",
-            "- €",
-            "67.00 €",
-            "02.00 €",
-            "03.00 €",
-            "09.00 €",
-            "08.00 €"
+            "15,90 €",
+            "22,90 €",
+            "01.00 €",
+            "23.00 €"
         ]
     },
     {
         "category_items": [
-            "Pounti Maison - cake auvergnat, lard, pruneaux, feuilles de blettes",
-            "Salade de Chèvre Chaud - toast de chèvre chaud au miel, poitrine de porc, tomates, œuf",
-            "Salade du Buron - bœuf séché, cantal, bleu d'Auvergne, tomates, œuf, croutons et",
-            "Laitue",
-            "Carotte"
+            "Poisson du moment, selon arrivage, accompagné de légumes et riz"
         ],
-        "category_name": "Entrées et salades",
+        "category_name": "A la criée",
         "item_allergene": [
-            " 'lait, œuf, blé, porc'",
-            " 'lait, œuf, blé, porc'",
-            " 'lait, œuf, blé'",
-            null,
-            "Beta carotène"
+            " Poisson, crustacés, céréales contenant du gluten, moutarde, sésame"
         ],
         "item_prices": [
-            "- €",
-            "- €",
-            "- €",
-            "- €",
-            "21.00 €"
+            "16,50 €"
         ]
     },
     {
         "category_items": [
-            "Nugget's de Poulet, Cheeseburger ou Steak Haché - Accompagnement, truffade, frites maison ou légumes du moment",
-            "Glace Haribo, Mousse au Chocolat, ou Fromage Blanc",
-            "Glace vanille"
+            "1 soda au choix (Coca Cola, limonade, Ice Tea pêche, sirop), Steak haché ou Fish’n’Chips, Glace (chocolat, vanille, fraise) ou Moelleux au chocolat"
         ],
-        "category_name": "Menu enfant",
+        "category_name": "Menu Petits Girondins",
         "item_allergene": [
-            " \"Gluten, Oeufs, Lait, Fruits à coques\"",
-            " \"Lait, Fruits à coques\"",
-            "Vanille"
+            "crustacés, soja, poisson, sésame, fruits à coque, gluten, lait, orge, moutarde"
         ],
         "item_prices": [
-            "- €",
-            "- €",
-            "12.00 €"
+            "09,90 €"
+        ]
+    },
+    {
+        "category_items": [
+            "Tapenade d’olives noires maison et ses toasts",
+            "Tatin de légumes au pesto et salade fraîcheur (Crudités)",
+            "Salade de fruits ou Dessert au choix"
+        ],
+        "category_name": "Menu végétarien",
+        "item_allergene": [
+            " Olives, gluten",
+            " Noix, gluten",
+            " Fruits à coque"
+        ],
+        "item_prices": [
+            "19,50 €"
+        ]
+    },
+    {
+        "category_items": [
+            "Niniche Bordelaise",
+            "Panna cotta (fruits rouges ou caramel)",
+            "Tiramisu",
+            "Crème brie",
+            "Crème Citron / Passion Spéculoos",
+            "Coulant au chocolat",
+            "Les trois boules de glace (Vanille, chocolat, fraise)",
+            "Pain perdu et sa glace vanille",
+            "Café: ponrman"
+        ],
+        "category_name": "Nos Desserts",
+        "item_allergene": [
+            " 'lait, œufs, gluten, fruits à coque'",
+            " 'lait, œufs, gluten'",
+            " 'lait, œufs, gluten, caféine'",
+            " 'lait, œufs'",
+            " 'lait, œufs, gluten, fruits à coque'",
+            " 'lait, œufs, gluten, soja, fruits à coque'",
+            " 'lait, œufs, gluten'",
+            " 'lait, œufs, gluten'",
+            " 'caféine'"
+        ],
+        "item_prices": [
+            "06,90 €",
+            "06,90 €",
+            "07,50 €",
+            "150,00 €",
+            "50,00 €",
+            "07,50 €",
+            "150,00 €",
+            "08,50 €",
+            "08,50 €"
         ]
     }
 ]
