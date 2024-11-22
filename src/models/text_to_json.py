@@ -4,16 +4,15 @@ from src.data.api_key import get_api_key
 co = cohere.ClientV2(get_api_key())
 
 
-def generate_json(text: str, section_list:str="Entrées, Plats, Desserts, Boissons, Vins"):
-    # prompt = (
-    #     f"Voici un menu de restaurant :\n\n{text}\n\n"
-    #     f"Transforme ce texte en une liste de dictionnaires. Chaque section du menu)"
-    #     "doit être le nom category_name. Cela peut être Entrées, Plats, Desserts, Boissons, Vins ou un nom personnalisé donné dans le menu."
-    #     "Dans chaque dictionnaire, tu dois avoir category_name, category_items et category_prices."
-    #     """La forme doit être la suivante : [{"nom_de_section":nom, "category_items":liste, "category_prices":liste}, ...]."""
-    #     "Ne réponds rien d'autre que la la liste de dictionnaires."
-    # )
-
+def generate_json(text: str):
+    """
+    This function takes a string of text and a list of sections and returns a list of dictionaries.
+    Each dictionary represents a section of a restaurant menu.
+    Args: 
+        - text: a string of text representing a restaurant menu
+    Returns:
+        - a list of dictionaries, where each dictionary represents a section of a restaurant menu
+    """
     prompt = (
         f"Voici un menu de restaurant :\n\n{text}\n\n"
         f"Transforme ce texte en une liste de dictionnaires. Chaque section du menu)"
@@ -32,6 +31,13 @@ def generate_json(text: str, section_list:str="Entrées, Plats, Desserts, Boisso
 
 
 def normalize_json(json_data):
+    """
+    This function takes a list of dictionaries and returns a list of dictionaries.
+    Args:
+        - json_data: a list of dictionaries
+    Returns:
+        - a list of dictionaries where the prices are formatted as strings
+    """
     for section in json_data:
         formatted_prices = []
         for price in section["item_prices"]:

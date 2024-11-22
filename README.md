@@ -9,10 +9,10 @@ Execute the command `source venv/bin/activate` to activate the virtual environme
 
 3. Execute the command `pip install -r requirements.txt` to install the dependencies.
 
-4. Execute the command `npm install` from the `frontend` directory to install the dependencies.
+4. Execute the command `npm install` from the `src/web-app/frontend` directory to install the dependencies.
 You have to install Node.js and npm to do this.
 
-5. Execute the command `npm run build` from the `frontend` directory to build the frontend.
+5. Execute the command `npm run build` from the `src/web-app/frontend` directory to build the frontend.
 
 
 ## Usage
@@ -27,7 +27,7 @@ You have to install Node.js and npm to do this.
 
 ## With Docker
 1. Download the Docker image from the Docker Hub.
-2. Execute the command `docker run -p 5001:5000 guillaumebourgain/smartmenue:latest` to start the container.
+2. Execute the command `docker run -p 5001:5000 smartmenu-app` to start the container.
 3. Open your browser and go to `http://localhost:5001/` to use the application.
 
 

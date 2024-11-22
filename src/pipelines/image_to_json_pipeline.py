@@ -6,6 +6,7 @@ def image_to_json_pipeline(image_path: str, model_name: str = "pytesseract", thr
     args: 
         image_path: path to the image
         model_name: name of the model (pytesseract, easyocr, keras_ocr, doctr)
+        threshold: threshold for image extraction
     return: 
         list of dictionaries containing the menu items
     """

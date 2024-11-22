@@ -5,6 +5,13 @@ co = cohere.ClientV2(get_api_key())
 
 
 def text_to_allergene(dishes:str):
+    """
+    This function takes a string of text and returns a list of allergenes.
+    Args: 
+        - dishes: a string of text representing a list of dishes   
+    Returns:
+        - a list of allergenes for each dish
+    """
     prompt = (
         f"Voici les noms des plats d'un restaurant : {dishes}. Chaque plat est entre guillemets comme ceci : 'nom du plat'. Si un plat comporte plusieurs éléments, il faudra associer la liste des allergènes dans la même chaine de caractères"
         "Donne moi la liste des allergènes présents dans chaque plat sous la forme d'une liste de chaine de caractères (des allergènes séparés par des virgules)."
