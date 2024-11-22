@@ -1,7 +1,7 @@
 import cohere
+from src.data.api_key import get_api_key
 
-co = cohere.ClientV2("jDRziy0rPDlXjCY9gvzEcV4BxfVCSQ4BavvnJ011")
-#co = cohere.ClientV2("7HJV6CGrabnCQWomhg45iZHzDuOHiI91RfkrhDNr")
+co = cohere.ClientV2(get_api_key())
 
 
 def text_to_allergene(dishes:str):

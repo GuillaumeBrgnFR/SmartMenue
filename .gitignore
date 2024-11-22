@@ -200,3 +200,5 @@ data/.DS_Store
 .idea/
 
 >>>>>>> bf06201 (fix logo)
+.gitsecret/keys/random_seed
+!*.secret

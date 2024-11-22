@@ -16,7 +16,7 @@ You have to install Node.js and npm to do this.
 
 2. In another terminal, execute the command `npm start` from the `frontend` directory to start the frontend.
 
-3. Open your browser and go to `http://localhost:3000/` to use the application.
+3. Open your browser and go to `http://localhost:5000/` to use the application.
 
 
 ## Features
